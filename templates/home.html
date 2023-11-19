@@ -25,110 +25,21 @@
 
 	
 <div class="row">
+	{% for product in products %}
 	<div class="col-md-3">
 		<div class="card card-product-grid">
-			<a href="./product-detail.html" class="img-wrap"> <img src="{% static 'images/items/1tb_grey.jpeg' %}"> </a>
+			<a href="./product-detail.html" class="img-wrap"> <img src="{{ product.images.url }}"> </a>
 			<figcaption class="info-wrap">
-				<a href="./product-detail.html" class="title">1TB External Hard Disk Drive</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-                <div class="Storage Capacity">1 TB</div>
-                <div class="Type"> External</div>
-                <div class="color"> Grey</div>
-                <div class="connectivity"> Wired</div>
+				<a href="./product-detail.html" class="title">{{product.product_name}}</a>
+				<div class="price mt-1">€{{product.price}}</div> <!-- price-wrap.// -->
+                <div class="Storage Capacity">{{product.storage_capacity}}</div>
+                <div class="Type"> {{product.hard_disk_interface}}</div>
+                <div class="color"> {{product.color}}</div>
+            
 			</figcaption>
 		</div>
 	</div> <!-- col.// -->
-	<div class="col-md-3">
-		<div class="card card-product-grid">
-			<a href="./product-detail.html" class="img-wrap"> <img src= "{% static 'images/items/2tb.jpeg' %}"> </a>
-			<figcaption class="info-wrap">
-				<a href="./product-detail.html" class="title">2TB External Disk Drive</a>
-				<div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-md-3">
-		<div class="card card-product-grid">
-			<a href="./product-detail.html" class="img-wrap"> <img src="{% static 'images/items/3tb.jpg' %}"> </a>
-			<figcaption class="info-wrap">
-				<a href="./product-detail.html" class="title">3 TB Hard Disk Drive</a>
-				<div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-md-3">
-		<div class="card card-product-grid">
-			<a href="./product-detail.html" class="img-wrap"> <img src="{% static 'images/items/4tb.jpg' %}"> </a>
-			<figcaption class="info-wrap">
-				<a href="./product-detail.html" class="title">4TB Hard Disk Drive</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-md-3">
-		<div class="card card-product-grid">
-			<a href="./product-detail.html" class="img-wrap"> <img src="{% static 'images/items/5tb_.jpg' %}"> </a>
-			<figcaption class="info-wrap">
-				<a href="./product-detail.html" class="title">5TB Hard Disk Drive</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-md-3">
-		<div class="card card-product-grid">
-			<a href="./product-detail.html" class="img-wrap"> <img src="{% static 'images/items/6tb.jpg' %}"> </a>
-			<figcaption class="info-wrap">
-				<a href="./product-detail.html" class="title">6TB Hard Disk Drive</a>
-				<div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-md-3">
-		<div class="card card-product-grid">
-			<a href="./product-detail.html" class="img-wrap"> <img src="{% static 'images/items/7tb.jpg' %}"> </a>
-			<figcaption class="info-wrap">
-				<a href="./product-detail.html" class="title">7TB Hard Disk Drive</a>
-				<div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-md-3">
-		<div class="card card-product-grid">
-			<a href="./product-detail.html" class="img-wrap"> <img src="{% static 'images/items/8tb.jpg' %}"> </a>
-			<figcaption class="info-wrap">
-				<a href="./product-detail.html" class="title">8TB Hard Disk Drive</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-    <div class="col-md-3">
-		<div class="card card-product-grid">
-			<a href="./product-detail.html" class="img-wrap"> <img src="{% static 'images/items/9tb.jpg' %}"> </a>
-			<figcaption class="info-wrap">
-				<a href="./product-detail.html" class="title">9TB Hard Disk Drive</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-    <div class="col-md-3">
-        <div class="card card-product-grid">
-            <a href="./product-detail.html" class="img-wrap"> <img src="{% static 'images/items/10tb.jpg' %}"> </a>
-            <figcaption class="info-wrap">
-                <a href="./product-detail.html" class="title">10TB Hard Disk Drive</a>
-                <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-            </figcaption>
-        </div>
-    </div> <!-- col.// -->
-    <div class="col-md-3">
-		<div class="card card-product-grid">
-			<a href="./product-detail.html" class="img-wrap"> <img src="{% static 'images/items/500Gb.jpeg' %}"> </a>
-			<figcaption class="info-wrap">
-				<a href="./product-detail.html" class="title">500 GB Hard Disk Drive</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-
+	{% endfor %}
 </div> <!-- row.// -->
 
 </div><!-- container // -->
