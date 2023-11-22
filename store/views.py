@@ -4,6 +4,8 @@ from category.models import Category
 from carts.models import CartItem
 from carts.views import _cart_id
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models import Q
+
 
 
 # Create your views here.
@@ -47,3 +49,42 @@ def product_detail(request, category_slug, product_slug):
         'in_cart': in_cart,
     }
     return render(request, 'store/product_detail.html', context)
+""" 
+def search(request):
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+            products = Product.objects.order_by('-created_date').filter(Q(product_description__icontains=keyword) | Q(product_name__icontains=keyword))
+    context = {'products': products }
+    return render(request, 'store/store.html', context)
+"""
+
+def search(request):
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+            # Define the fields you want to search
+            searchable_fields = [
+                'product_name',
+                'product_description',
+                'compatible_devices',
+                'installation_type',
+                'color',
+                'brand',
+                'storage_capacity',
+                'hard_disk_interface',
+                'special_feature',
+            ]
+
+            # Initialize an empty Q object to aggregate all queries
+            q_objects = Q()
+
+            # Construct OR queries for each searchable field
+            for field in searchable_fields:
+                q_objects |= Q(**{f"{field}__icontains": keyword})
+
+            # Filter products based on the aggregated queries
+            products = Product.objects.filter(q_objects).order_by('-created_date')
+
+    context = {'products': products }
+    return render(request, 'store/store.html', context)
