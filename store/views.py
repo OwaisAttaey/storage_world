@@ -60,31 +60,38 @@ def search(request):
 """
 
 def search(request):
-    if 'keyword' in request.GET:
-        keyword = request.GET['keyword']
-        if keyword:
-            # Define the fields you want to search
-            searchable_fields = [
-                'product_name',
-                'product_description',
-                'compatible_devices',
-                'installation_type',
-                'color',
-                'brand',
-                'storage_capacity',
-                'hard_disk_interface',
-                'special_feature',
-            ]
+    keyword = request.GET.get('keyword')
 
-            # Initialize an empty Q object to aggregate all queries
-            q_objects = Q()
+    if keyword:
+        # Define the fields you want to search
+        searchable_fields = [
+            'product_name',
+            'product_description',
+            'compatible_devices',
+            'installation_type',
+            'color',
+            'brand',
+            'storage_capacity',
+            'hard_disk_interface',
+            'special_feature',
+        ]
 
-            # Construct OR queries for each searchable field
-            for field in searchable_fields:
-                q_objects |= Q(**{f"{field}__icontains": keyword})
+        # Initialize an empty Q object to aggregate all queries
+        q_objects = Q()
 
-            # Filter products based on the aggregated queries
-            products = Product.objects.filter(q_objects).order_by('-created_date')
+        # Construct OR queries for each searchable field
+        for field in searchable_fields:
+            q_objects |= Q(**{f"{field}__icontains": keyword})
 
-    context = {'products': products }
+        # Filter products based on the aggregated queries
+        products = Product.objects.filter(q_objects).order_by('-created_date')
+        product_count = products.count()
+    else:
+        products = Product.objects.none()  # Return an empty queryset if no keyword is provided
+        product_count = 0
+
+    context = {
+        'products': products,
+        'product_count': product_count,
+    }
     return render(request, 'store/store.html', context)
