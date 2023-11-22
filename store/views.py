@@ -49,15 +49,6 @@ def product_detail(request, category_slug, product_slug):
         'in_cart': in_cart,
     }
     return render(request, 'store/product_detail.html', context)
-""" 
-def search(request):
-    if 'keyword' in request.GET:
-        keyword = request.GET['keyword']
-        if keyword:
-            products = Product.objects.order_by('-created_date').filter(Q(product_description__icontains=keyword) | Q(product_name__icontains=keyword))
-    context = {'products': products }
-    return render(request, 'store/store.html', context)
-"""
 
 def search(request):
     keyword = request.GET.get('keyword')

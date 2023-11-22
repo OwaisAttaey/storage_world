@@ -16,111 +16,108 @@
         </div> <!-- img-big-wrap.// -->
         
     </article> <!-- gallery-wrap .end// -->
-            </aside>
-            <main class="col-md-6 border-left">
-    <article class="content-body">
-    
-    <h2 class="title">{{ single_product.product_name }}</h2>
-    
-    <div class="mb-3"> 
-        <var class="price h4">€{{single_product.price}}</var> 
-    </div> 
-    
-    <p>{{single_product.product_description}}</p>
-
-    <div class="brand-wrap mt-2">
-        <div class="brand"><b>Brand:</b> {{single_product.brand}}</div>
-    </div> <!-- brand-wrap.// -->
-
-    <div class="color mt-2">
-        <div class="color"><b>Color:</b> {{single_product.color}}</div>
-    </div> <!-- color-wrap.// -->
-
-    <div class="storage_capacity mt-2">
-        <div class="storage"><b>Digital storage capacity:</b> {{single_product.storage_capacity}}</div>
-    </div> <!-- storage_capacity-wrap.// -->
-
-    <div class="hard_disk_interface mt-2">
-        <div class="hard_disk_interface"><b>Hard disk interface:</b> {{single_product.hard_disk_interface}}</div>
-    </div> <!-- hard_disk_interface-wrap.// -->
-
-    <div class="special_feature mt-2">
-        <div class="special_feature"><b>Special feature:</b> {{single_product.special_feature}}</div>
-    </div> <!-- special_feature-wrap.// -->
-    
-    <div class="compatible_devices  mt-2">
-        <div class="compatible_devices "><b>Compatible devices:</b> {{single_product.compatible_devices }}</div>
-    </div> <!-- compatible_devices -wrap.// -->
-
-    <div class="installation_type  mt-2">
-        <div class="installation_type "><b>Installation type:</b> {{single_product.installation_type }}</div>
-    </div> <!-- installation_type -wrap.// -->
-
-    <div class="stock  mt-2">
-        <div class="stock "><b>In stock:</b> {{single_product.stock }}</div>
-    </div> <!-- stock -wrap.// -->
-    
-    
-    <hr>
-        <div class="row">
-            <div class="item-option-select">
-                <h6>Choose Color</h6>
-                <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> Silver
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color" > Gray
-                  </label>
-                  <label class="btn btn-light active">
-                    <input type="radio" name="radio_color checked"> Gold
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> Black
-                  </label>
+        </aside>
+        <main class="col-md-6 border-left">
+            <form action ="{% url 'add_cart' single_product.id %}" method="POST">
+                {% csrf_token %}
+                
+                <article class="content-body">
+                
+                <h2 class="title">{{ single_product.product_name }}</h2>
+                
+                <div class="mb-3"> 
+                    <var class="price h4">€{{single_product.price}}</var> 
                 </div> 
-            </div>
-        </div> <!-- row.// -->
-        <div class="row">
-            <div class="item-option-select">
-                <h6>Select Size</h6>
-                <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> S
-                  </label>
-                  <label class="btn btn-light active">
-                    <input type="radio" name="radio_color" checked> M
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> L
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> XL
-                  </label>
-                </div> 
-            </div>
-        </div> <!-- row.// -->
-        <hr>
-        {% if single_product.stock <= 0 %}
-        <h5 class="text-danger">Out of stock</h5>
-        {% else %}
-            {% if in_cart %}
-            <a href="#" class="btn  btn-success"> <span class="text">Added to Cart</span> <i class="fas fa-check"></i></a>
-            <a href="{% url 'add_cart' single_product.id %}" class="btn  btn-outline-primary"> <span class="text">View Cart</span> <i class="fas fa-eye"></i></a>
-            {% else %}
-            <a href="{% url 'add_cart' single_product.id %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i></a>
-            {% endif %} 
-        {% endif %}    
-    </article> <!-- product-info-aside .// -->
-            </main> <!-- col.// -->
-        </div> <!-- row.// -->
+                
+                <p>{{single_product.product_description}}</p>
+
+                <div class="brand-wrap mt-2">
+                    <div class="brand"><b>Brand:</b> {{single_product.brand}}</div>
+                </div> <!-- brand-wrap.// -->
+
+                <div class="color mt-2">
+                    <div class="color"><b>Color:</b> {{single_product.color}}</div>
+                </div> <!-- color-wrap.// -->
+
+                <div class="storage_capacity mt-2">
+                    <div class="storage"><b>Digital storage capacity:</b> {{single_product.storage_capacity}}</div>
+                </div> <!-- storage_capacity-wrap.// -->
+
+                <div class="hard_disk_interface mt-2">
+                    <div class="hard_disk_interface"><b>Hard disk interface:</b> {{single_product.hard_disk_interface}}</div>
+                </div> <!-- hard_disk_interface-wrap.// -->
+
+                <div class="special_feature mt-2">
+                    <div class="special_feature"><b>Special feature:</b> {{single_product.special_feature}}</div>
+                </div> <!-- special_feature-wrap.// -->
+                
+                <div class="compatible_devices  mt-2">
+                    <div class="compatible_devices "><b>Compatible devices:</b> {{single_product.compatible_devices }}</div>
+                </div> <!-- compatible_devices -wrap.// -->
+
+                <div class="installation_type  mt-2">
+                    <div class="installation_type "><b>Installation type:</b> {{single_product.installation_type }}</div>
+                </div> <!-- installation_type -wrap.// -->
+
+                <div class="stock  mt-2">
+                    <div class="stock "><b>In stock:</b> {{single_product.stock }}</div>
+                </div> <!-- stock -wrap.// -->
+                
+                
+                <hr>
+                    <div class="row">
+                        <div class="item-option-select">
+                            <h6>Choose Color</h6>
+                                <select name="color" class="form-control" required>
+                                    <option value="" disabled selected>Select</option>
+                                    {% for i in single_product.variation_set.colors %}
+                                    <option value="{{ i.variation_value | lower}}">{{ i.variation_value | capfirst }}</option>
+                                    {% endfor %}
+                                </select>
+                        </div>
+                    </div> <!-- row.// -->
+
+                    <div class="row">
+                        <div class="item-option-select">
+                            <h6>Select Size</h6>
+                                <select name="size" class="form-control" required>
+                                    <option value="" disabled selected>Select</option>
+                                    {% for i in single_product.variation_set.sizes %}
+                                    <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
+                                    {% endfor %}
+                                    
+                                </select>
+                            
+                        </div>
+                    </div> <!-- row.// -->
+                    <hr>
+                    {% if single_product.stock <= 0 %}
+                    <h5 class="text-danger">Out of stock</h5>
+                    {% else %}
+                        {% if in_cart %}
+
+                        <a href="#" class="btn  btn-success"> <span class="text">Added to Cart</span> <i class="fas fa-check"></i></a>
+                        <a href="{% url 'add_cart' single_product.id %}" class="btn  btn-outline-primary"> <span class="text">View Cart</span> <i class="fas fa-eye"></i></a>
+                        
+                        {% else %}
+
+                        <button type="submit" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i></button>
+                        
+                        {% endif %} 
+
+                    {% endif %}    
+
+                </article> <!-- product-info-aside .// -->
+            </form>
+        </main> <!-- col.// -->
+      </div> <!-- row.// -->
     </div> <!-- card.// -->
     <!-- ============================ COMPONENT 1 END .// ================================= -->
     
     <br>
     
     <div class="row">
-                <div class="col-md-9">
+            <div class="col-md-9">
     
         <header class="section-heading">
             <h3>Customer Reviews </h3>  
