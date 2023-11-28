@@ -14,6 +14,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
 from carts.views import _cart_id
 from carts.models import Cart, CartItem
+import requests
 
 # Create your views here.
 
@@ -104,11 +105,10 @@ def login(request):
             except:
                 pass
             auth.login(request, user)
-            messages.success(request, 'You have successfully logged in.')
+            messages.success(request, 'You are now logged in.')
             url = request.META.get('HTTP_REFERER')
-            
             try:
-                query = request.utils.urlparse(url).query
+                query = requests.utils.urlparse(url).query
                 # next=/cart/checkout/
                 params = dict(x.split('=') for x in query.split('&'))
                 if 'next' in params:
@@ -117,7 +117,7 @@ def login(request):
             except:
                 return redirect('dashboard')
         else:
-            messages.error(request, 'Invalid credentials. Please check your email and password.')
+            messages.error(request, 'Invalid login credentials')
             return redirect('login')
     return render(request, 'accounts/login.html')
 
