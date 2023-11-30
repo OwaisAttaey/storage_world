@@ -1,9 +1,25 @@
 {% autoescape off %}
 
-Dear {{user.first_name}},
+Dear {{user.last_name | capfirst}},
 
 We are delighted to inform you that your recent order has been successfully received.
 
 Order Number: {{order.order_number}}
+Order Date: {{order.created_at}}
+Order Total: {{order.order_total}}
+
+Delivery Address:
+{{ order.first_name }} {{ order.last_name }}
+{{ order.address_line_1}}
+{{ order.city }}
+{{ order.state }}
+{{ order.country }}
+
+If you have any questions or require further assistance, please don't hesitate to contact our support team. 
+
+Thank you for choosing us!
+
+Best regards,
+Your World Storage Team
 
 {% endautoescape %}
