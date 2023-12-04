@@ -60,3 +60,8 @@
     border: 1px solid grey;
     
   }
+
+  .img-big-wrap {
+    text-align: center;
+    margin: 70px auto; /* Adjust margin as needed */
+}
